@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchMovieById } from '../../service/movies-api';
 import Cast from '../../components/Cast/Cast';
 import Review from '../../components/Reviews';
+import routes from '../../routes';
 import css from './MovieDetailsPage.module.css';
 
 export default class MovieDetailPage extends Component {
@@ -55,7 +56,7 @@ export default class MovieDetailPage extends Component {
 
     return (
       <div>
-        <button type="button" onClick={this.onGoBack}>
+        <button type="button" onClick={this.onGoBack} className={css.btn}>
           Back
         </button>
         {movie && (
@@ -87,19 +88,22 @@ export default class MovieDetailPage extends Component {
 
           <ul className={css.linkList}>
             <li>
-              <Link to={`${match.url}/cast`} className={css.castLink}>
+              <Link to={`${match.url}/${routes.CAST}`} className={css.castLink}>
                 Cast
               </Link>
             </li>
             <li>
-              <Link to={`${match.url}/review`} className={css.reviewLink}>
+              <Link
+                to={`${match.url}/${routes.REVIEW}`}
+                className={css.reviewLink}
+              >
                 Review
               </Link>
             </li>
           </ul>
           <>
-            <Route path={`${match.path}/cast`} component={Cast} />
-            <Route path={`${match.path}/review`} component={Review} />
+            <Route path={`${match.path}/${routes.CAST}`} component={Cast} />
+            <Route path={`${match.path}/${routes.REVIEW}`} component={Review} />
           </>
         </div>
       </div>
